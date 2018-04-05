@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/main.css" />
+</head>
+
+<body>
+
+  <header>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Bimpton Station Departures</h1>
+        <p class="lead">Log in for data entry privileges.</p>
+      </div>
+    </div>
+  </header>
+
+
+  <section class="mx-auto">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Scheduled Departures</h3>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Destination</th>
+          <th scope="col">First train at... (24 HR)</th>
+          <th scope="col">Runs every... (mins)</th>
+          <th scope="col">Next train in...</th>
+        </tr>
+      </thead>
+      <tbody id="appendLinesTo">
+      </tbody>
+    </table>
+  </section>
+
+  <section class="mx-auto">
+    <div class="row" id="formRow">
+      <div class="col">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Add Line</h3>
+          </div>
+          <div class="panel-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="nameInput">Name</label>
+                <input class="form-control" id="nameInput" type="text">
+              </div>
+              <div class="form-group">
+                <label for="destinationInput">Destination</label>
+                <input class="form-control" id="destinationInput" type="text">
+              </div>
+              <div class="form-group">
+                <label for="firstAtInput">First train at... (24hr)</label>
+                <input class="form-control" id="firstAtInput" type="time">
+              </div>
+              <div class="form-group">
+                <label for="frequencyInput">Runs every... (mins)</label>
+                <input class="form-control" id="frequencyInput" type="number">
+              </div>
+              <button class="btn btn-primary" id="add-user" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js"></script>
+  <script src="./assets/js/app.js"></script>
+
+</body>
+
+</html>
