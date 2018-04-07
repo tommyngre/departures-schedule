@@ -21,8 +21,35 @@ var frequency = "";
 
 function validateTime(time) {
   time = moment(time, "HH:mm").format("HH:mm");
-  console.log(time, "validateTime()");
   return time;
+}
+
+function err(id,isStringVal) {
+  if (isStringVal){
+    $(id).val("invalid input :(");
+  }
+  $(id).css('border', '1px solid red')
+    .css('background-color', 'navajowhite');
+}
+
+function validateInputs(name, destination, firstTrainAt, frequency) {
+  let string = true;
+  if (name == "") {
+    err("#nameInput",string);
+    return false;
+  } else if (destination == "") {
+    err("#destinationInput",string);
+    return false;
+  } else if ( firstTrainAt == "Invalid date" ) {
+    string = false;
+    err("#firstAtInput",string);
+    return false;
+  } else if (frequency == "") {
+    err("#frequencyInput",string);
+    return false;
+  } else {
+    return true;
+  }
 }
 
 $("#add-user").on("click", function (event) {
@@ -32,14 +59,21 @@ $("#add-user").on("click", function (event) {
   name = $("#nameInput").val();
   destination = $("#destinationInput").val();
   firstTrainAt = validateTime($("#firstAtInput").val());
+  console.log(firstTrainAt, " firstTrainAt");
   frequency = $("#frequencyInput").val();
 
-  database.ref().push({
-    name: name,
-    destination: destination,
-    firstTrainAt: firstTrainAt,
-    frequency: frequency
-  });
+  let valid = validateInputs(name, destination, firstTrainAt, frequency);
+
+  if (valid) {
+
+    database.ref().push({
+      name: name,
+      destination: destination,
+      firstTrainAt: firstTrainAt,
+      frequency: frequency
+    });
+
+  }
 
 });
 
