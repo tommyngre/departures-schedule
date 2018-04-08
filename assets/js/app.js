@@ -24,8 +24,8 @@ function validateTime(time) {
   return time;
 }
 
-function err(id,isStringVal) {
-  if (isStringVal){
+function err(id, isStringVal) {
+  if (isStringVal) {
     $(id).val("invalid input :(");
   }
   $(id).css('border', '1px solid red')
@@ -35,31 +35,59 @@ function err(id,isStringVal) {
 function validateInputs(name, destination, firstTrainAt, frequency) {
   let string = true;
   if (name == "") {
-    err("#nameInput",string);
+    err("#nameInput", string);
     return false;
   } else if (destination == "") {
-    err("#destinationInput",string);
+    err("#destinationInput", string);
     return false;
-  } else if ( firstTrainAt == "Invalid date" ) {
+  } else if (firstTrainAt == "Invalid date") {
     string = false;
-    err("#firstAtInput",string);
+    err("#firstAtInput", string);
     return false;
   } else if (frequency == "") {
-    err("#frequencyInput",string);
+    err("#frequencyInput", string);
     return false;
   } else {
     return true;
   }
 }
 
-$("#add-user").on("click", function (event) {
+// DELETE FUNCTIONALITY
+$("#appendLinesTo").on('click', '.fa-minus-circle', function () {
+  let row = $(this).parents('tr');
+  let confirmDelete = confirm("Delete this line?");
+  if ( confirmDelete == true) {
+    $(this).parents('tr').remove();
+  }
+});
+
+// EDIT FUNCTIONALITY
+$("#appendLinesTo").on('click', '.fa-edit', function () {
+    let row = $(this).parents('tr');
+
+    if ($(row).attr('data-state') == 'set') {
+      console.log('set to edit');
+      $(this).parents('tr').attr('contenteditable', 'true')
+        .attr('data-state', 'edit')
+        .css('color', 'red')
+        .css('font-weight', '700');
+    } else {
+      console.log('set to set');
+      $(this).parents('tr').attr('contenteditable', 'false')
+        .attr('data-state', 'set')
+        .css('color', 'black')
+        .css('font-weight', '400');
+    }
+  });
+
+//ADD FUNCTIONALITY
+$("#add").on("click", function (event) {
   event.preventDefault();
 
   // values from inputs
   name = $("#nameInput").val();
   destination = $("#destinationInput").val();
   firstTrainAt = validateTime($("#firstAtInput").val());
-  console.log(firstTrainAt, " firstTrainAt");
   frequency = $("#frequencyInput").val();
 
   let valid = validateInputs(name, destination, firstTrainAt, frequency);
@@ -100,7 +128,7 @@ function getNextTrain(firstTrainAt, frequency) {
 
   console.log(diff, " after do/while");
 
-  return diff
+  return diff;
 }
 
 database.ref().on("child_added", function (snapshot) {
@@ -115,15 +143,17 @@ database.ref().on("child_added", function (snapshot) {
   // Change the HTML to reflect
   let html =
     `
-  <td>${s.name}</td>
-  <td>${s.destination}</td>
-  <td>${s.firstTrainAt}</td>
-  <td>${s.frequency}</td>
+  <td class='editable'>${s.name}</td>
+  <td class='editable'>${s.destination}</td>
+  <td class='editable'>${s.firstTrainAt}</td>
+  <td class='editable'>${s.frequency}</td>
   <td>${nextTrainIn} minutes</td>
-
+  <td><i class="fa fa-edit"></td>
+  <td><i class="fa fa-minus-circle"></td>
   `
 
-  let newLine = $("<tr>").html(html);
+  let newLine = $("<tr>").html(html)
+    .attr('data-state', 'set');
   $("#appendLinesTo").append(newLine);
 
 

@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    type="text/css">
   <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/main.css" />
 </head>
 
@@ -37,6 +39,8 @@
           <th scope="col">First train at... (24 HR)</th>
           <th scope="col">Runs every... (mins)</th>
           <th scope="col">Next train in...</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody id="appendLinesTo">
@@ -69,7 +73,7 @@
                 <label for="frequencyInput">Runs every... (mins)</label>
                 <input class="form-control" id="frequencyInput" type="number">
               </div>
-              <button class="btn btn-primary" id="add-user" type="submit">Submit</button>
+              <button class="btn btn-primary" id="add" type="submit">Submit</button>
             </form>
           </div>
         </div>
