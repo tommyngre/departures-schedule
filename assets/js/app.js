@@ -1,3 +1,9 @@
+//todos
+///update every min
+///modal: move cursor to username
+///update/remove persistent row data
+///center or make table width 100% when small
+
 //implementing google/github auth proved too tricky...
 //this just collects info checks against global array of credential objs
 var credentials = [
@@ -151,7 +157,7 @@ database.ref().on("child_added", function (snapshot) {
   // Change the HTML to reflect
   let html =
     `
-  <td class='lato'>${s.name}</td>
+  <td scope='row' class='lato'>${s.name}</td>
   <td class='lato'>${s.destination}</td>
   <td class='lato'>${s.firstTrainAt}</td>
   <td class='lato'>${s.frequency} mins</td>
@@ -167,10 +173,9 @@ database.ref().on("child_added", function (snapshot) {
 
   let htmlSm =
     `
-  <td class='lato'>${s.name}</td>
+  <td scope='row' class='lato'>${s.name}</td>
   <td class='lato'>${s.destination}</td>
   <td class='lato'>${s.firstTrainAt}</td>
-  <td class='lato'>${s.frequency} mins</td>
   <td class='lato'>${nextTrainIn} min</td>
   `
 
@@ -200,8 +205,8 @@ function authenticate() {
   })
 
   if (authenticated == 'false') {
-    $('#username').val("invalid credentials").css('color', 'red');
-    $('#password').val("invalid credentials").css('color', 'red');
+    $('#username').val("Invalid Credentials").css('color', 'red');
+    $('#password').val("Invalid Credentials").css('color', 'red');
 
     setTimeout(function () {
       $('#username').val("").css('color', 'black');

@@ -15,30 +15,31 @@
 </head>
 
 <body>
-  <div class="no-opacity">
+  <div class="bg-pic">
+
     <div id="modal">
       <div id="modal-content" class="mx-auto modal-content">
-        <h1 class="montserrat-top-header">Bimpton Station Departures</h1>
+        <h1 class="montserrat-top-header">Bimpton Station</h1>
         <h3 class="montserrat-header">Control Panel</h3>
         <input class="form-control-lg" id="username" type="text" placeholder="Username">
         <input class="form-control-lg" id="password" type="text" placeholder="Password">
         <button class="btn btn-lg btn-primary" id="submit-credentials">Log In</button>
         <button class="btn btn-lg btn-danger" id="cancel-credentials">Cancel</button>
-
       </div>
     </div>
 
 
     <header>
       <section class="mx-auto page-header">
-        <h1 class="montserrat-top-header">Bimpton Station Departures</h1>
+        <h1 class="montserrat-top-header">Bimpton Station</h1>
       </section>
     </header>
 
     <section class="mx-auto">
-      <h3 class="montserrat-header">Scheduled</h3>
-      
-      <table class="table-lg table borderless">
+      <h3 class="montserrat-header">Departures</h3>
+
+      <div class="mx-auto">
+      <table class="table-lg table border-mod">
         <thead>
           <tr>
             <th scope="col" class="lato">Name</th>
@@ -53,25 +54,25 @@
         <tbody id="appendLinesTo">
         </tbody>
       </table>
-
-      <table class="table-sm table borderless">
+    </div>
+    <div class="mx-auto">
+      <table class="table-sm table border-mod">
         <thead>
           <tr>
             <th scope="col" class="lato">Name</th>
-            <th scope="col" class="lato">Dest.</th>
+            <th scope="col" class="lato">Destination</th>
             <th scope="col" class="lato">First Stop (24hr)</th>
-            <th scope="col" class="lato">Stops Every</th>
             <th scope="col" class="lato">Next Stop</th>
           </tr>
         </thead>
         <tbody id="appendLinesTo-sm">
         </tbody>
       </table>
-
+    </div>
     </section>
 
     <section id="control-panel-login" class="mx-auto">
-      <button class="btn btn-sm btn-primary" id="login">Unlock Control Panel</button>
+      <button class="btn btn-lg btn-primary d-block mx-auto" id="login">Unlock Control Panel</button>
     </section>
 
     <section id="control-panel" class="disabled mx-auto">
@@ -84,22 +85,22 @@
             <div class="panel-body">
               <form role="form">
                 <div class="form-group">
-                  <label for="nameInput">Name</label>
-                  <input class="form-control" id="nameInput" type="text">
+                  <label class="lato" for="nameInput">Name</label>
+                  <input class="form-control lato" id="nameInput" type="text">
                 </div>
                 <div class="form-group">
-                  <label for="destinationInput">Destination</label>
+                  <label class="lato" for="destinationInput">Destination</label>
                   <input class="form-control" id="destinationInput" type="text">
                 </div>
                 <div class="form-group">
-                  <label for="firstAtInput">First train at... (24hr)</label>
+                  <label class="lato" for="firstAtInput">First train at... (24hr)</label>
                   <input class="form-control" id="firstAtInput" type="time">
                 </div>
                 <div class="form-group">
-                  <label for="frequencyInput">Runs every... (mins)</label>
+                  <label class="lato" for="frequencyInput">Runs every... (mins)</label>
                   <input class="form-control" id="frequencyInput" type="number">
                 </div>
-                <button class="btn btn-primary" id="add" type="submit">Add Line</button>
+                <button class="btn btn-lg btn-primary" id="add" type="submit">Add Line</button>
               </form>
             </div>
           </div>

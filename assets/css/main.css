@@ -1,11 +1,11 @@
 /* background image */
-.no-opacity {
+.bg-pic {
   width: 100%;
   height: auto;
   display: block;
   position: relative;
 }
-.no-opacity::after {
+.bg-pic::after {
   content: "";
   background: url("../../assets/images/train.jpg");
   opacity: 0.2;
@@ -17,16 +17,21 @@
   z-index: -1;   
 }
 
-.table thead th, .borderless td, .borderless th, .table td, .table th {
+
+.table thead th, .border-mod td, .border-mod th, .table td, .table th {
   border-color:black;
 }
-
+.table-sm{
+  display:none;
+}
 thead{
   background-color:snow;
 }
-
-.table-sm{
-  display:none;
+th{
+  font-weight: 400;
+}
+tr{
+  border-bottom:1px solid black;
 }
 
 section {
@@ -65,8 +70,8 @@ h1{
 font-family: 'Montserrat', sans-serif;
 }
 
-th{
-  font-weight: 400;
+label{
+  margin-bottom:0;
 }
 
 .lato{
@@ -83,16 +88,14 @@ th{
   position:fixed;
   width:100%;
   height:100%;
-  background-color:rgba(0, 0, 0, 0.8);
+  background-color:rgba(0, 0, 0, 0.5);
   z-index:5;
   display:none;
 }
-
 #modal-content{
   width:80%;
   z-index:10;
 }
-
 .modal-content{
   margin-top:20px;
   padding:20px 20px;
@@ -102,6 +105,18 @@ th{
   border-radius:0;
 }
 
+
+@media screen and (max-width: 600px) {
+  .table-sm{
+    display:block;
+  }
+  .table-lg{
+    display:none;
+  }
+  section {
+    width:95%;
+  }
+}
 
 @media screen and (max-width: 400px) {
   .table-sm{
@@ -113,5 +128,10 @@ th{
   section {
     width:95%;
   }
-  
+  h1,h3{
+    font-size:2em;
+  } 
+  .lato{
+    font-size:.8em;
+  }
 }
