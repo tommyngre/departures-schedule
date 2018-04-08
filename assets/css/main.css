@@ -17,7 +17,7 @@
   z-index: -1;   
 }
 
-table, .table, .table thead th,.table td, .table th{
+.table thead th, .borderless td, .borderless th, .table td, .table th {
   border-color:black;
 }
 
@@ -25,9 +25,14 @@ thead{
   background-color:snow;
 }
 
+.table-sm{
+  display:none;
+}
+
 section {
   width:90%;
 }
+
 h1{
   margin-bottom:0px;
 }
@@ -95,4 +100,18 @@ th{
 
 .form-control-lg{
   border-radius:0;
+}
+
+
+@media screen and (max-width: 400px) {
+  .table-sm{
+    display:block;
+  }
+  .table-lg{
+    display:none;
+  }
+  section {
+    width:95%;
+  }
+  
 }

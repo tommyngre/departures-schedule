@@ -36,19 +36,16 @@
     </header>
 
     <section class="mx-auto">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="montserrat-header">Scheduled Departures</h3>
-        </div>
-      </div>
-      <table class="table">
+      <h3 class="montserrat-header">Scheduled</h3>
+      
+      <table class="table-lg table borderless">
         <thead>
           <tr>
             <th scope="col" class="lato">Name</th>
             <th scope="col" class="lato">Destination</th>
-            <th scope="col" class="lato">First train at... (24 hr)</th>
-            <th scope="col" class="lato">Runs every... (mins)</th>
-            <th scope="col" class="lato">Next train in... (mins)</th>
+            <th scope="col" class="lato">First Stop (24hr)</th>
+            <th scope="col" class="lato">Stops Every</th>
+            <th scope="col" class="lato">Next Stop</th>
             <th scope="col" class="lato">Edit</th>
             <th scope="col" class="lato">Delete</th>
           </tr>
@@ -56,6 +53,21 @@
         <tbody id="appendLinesTo">
         </tbody>
       </table>
+
+      <table class="table-sm table borderless">
+        <thead>
+          <tr>
+            <th scope="col" class="lato">Name</th>
+            <th scope="col" class="lato">Dest.</th>
+            <th scope="col" class="lato">First Stop (24hr)</th>
+            <th scope="col" class="lato">Stops Every</th>
+            <th scope="col" class="lato">Next Stop</th>
+          </tr>
+        </thead>
+        <tbody id="appendLinesTo-sm">
+        </tbody>
+      </table>
+
     </section>
 
     <section id="control-panel-login" class="mx-auto">
@@ -76,15 +88,15 @@
                   <input class="form-control" id="nameInput" type="text">
                 </div>
                 <div class="form-group">
-                  <label for="destinationInput">Dest.</label>
+                  <label for="destinationInput">Destination</label>
                   <input class="form-control" id="destinationInput" type="text">
                 </div>
                 <div class="form-group">
-                  <label for="firstAtInput">First train (24hr)</label>
+                  <label for="firstAtInput">First train at... (24hr)</label>
                   <input class="form-control" id="firstAtInput" type="time">
                 </div>
                 <div class="form-group">
-                  <label for="frequencyInput">Runs every...</label>
+                  <label for="frequencyInput">Runs every... (mins)</label>
                   <input class="form-control" id="frequencyInput" type="number">
                 </div>
                 <button class="btn btn-primary" id="add" type="submit">Add Line</button>

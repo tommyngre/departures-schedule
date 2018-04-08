@@ -154,8 +154,8 @@ database.ref().on("child_added", function (snapshot) {
   <td class='lato'>${s.name}</td>
   <td class='lato'>${s.destination}</td>
   <td class='lato'>${s.firstTrainAt}</td>
-  <td class='lato'>${s.frequency} minutes</td>
-  <td class='lato'>${nextTrainIn} minutes</td>
+  <td class='lato'>${s.frequency} mins</td>
+  <td class='lato'>${nextTrainIn} mins</td>
   <td><i class="fa fa-edit"></td>
   <td><i class="fa fa-minus-circle"></td>
   `
@@ -163,6 +163,19 @@ database.ref().on("child_added", function (snapshot) {
   let newLine = $("<tr>").html(html)
     .attr('data-state', 'set');
   $("#appendLinesTo").append(newLine);
+
+
+  let htmlSm =
+    `
+  <td class='lato'>${s.name}</td>
+  <td class='lato'>${s.destination}</td>
+  <td class='lato'>${s.firstTrainAt}</td>
+  <td class='lato'>${s.frequency} mins</td>
+  <td class='lato'>${nextTrainIn} min</td>
+  `
+
+  let newLineSm = $("<tr>").html(htmlSm)
+  $("#appendLinesTo-sm").append(newLineSm);
 
 
   // Handle the errors
