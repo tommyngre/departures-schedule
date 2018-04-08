@@ -8,12 +8,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css"
+  />
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
     type="text/css">
   <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/main.css" />
 </head>
 
 <body>
+
+  <div id="modal">
+    <div id="modal-content" class="mx-auto modal-content">
+        <div class="form-group">
+          <label for="nameInput">User Name</label>
+          <input class="form-control" id="username" type="text">
+        </div>
+        <div class="form-group">
+          <label for="destinationInput">Password</label>
+          <input class="form-control" id="password" type="text">
+        </div>
+        <button class="btn btn-primary" id="submit-credentials">Log In</button>
+    </div>
+  </div>
+
 
   <header>
     <div class="jumbotron jumbotron-fluid">
@@ -23,7 +40,6 @@
       </div>
     </div>
   </header>
-
 
   <section class="mx-auto">
     <div class="panel panel-default">
@@ -36,7 +52,7 @@
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Destination</th>
-          <th scope="col">First train at... (24 HR)</th>
+          <th scope="col">First train at... (24 hr)</th>
           <th scope="col">Runs every... (mins)</th>
           <th scope="col">Next train in...</th>
           <th scope="col">Edit</th>
@@ -49,6 +65,10 @@
   </section>
 
   <section class="mx-auto">
+    <button class="btn btn-primary" id="login">Log In</button>
+  </section>
+
+  <section id="control-panel" class="disabled mx-auto">
     <div class="row" id="formRow">
       <div class="col">
         <div class="panel panel-default">
@@ -73,7 +93,7 @@
                 <label for="frequencyInput">Runs every... (mins)</label>
                 <input class="form-control" id="frequencyInput" type="number">
               </div>
-              <button class="btn btn-primary" id="add" type="submit">Submit</button>
+              <button class="btn btn-primary" id="add" type="submit">Add Line</button>
             </form>
           </div>
         </div>
@@ -82,6 +102,8 @@
   </section>
 
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.js"></script>
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

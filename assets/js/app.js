@@ -1,3 +1,16 @@
+//implementing google/github auth proved too tricky...
+//this just collects info checks against global array of credential objs
+var credentials = [
+  {
+    username:"tommy",
+    password:"tommy"
+  },
+  {
+    username:"chris",
+    password:"chris"
+  }
+];
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyC25-WUlZIYukycskRciNzYbNkz0In1yRo",
@@ -56,29 +69,32 @@ function validateInputs(name, destination, firstTrainAt, frequency) {
 $("#appendLinesTo").on('click', '.fa-minus-circle', function () {
   let row = $(this).parents('tr');
   let confirmDelete = confirm("Delete this line?");
-  if ( confirmDelete == true) {
+  if (confirmDelete == true) {
     $(this).parents('tr').remove();
   }
 });
 
 // EDIT FUNCTIONALITY
 $("#appendLinesTo").on('click', '.fa-edit', function () {
-    let row = $(this).parents('tr');
+  let row = $(this).parents('tr');
 
-    if ($(row).attr('data-state') == 'set') {
-      console.log('set to edit');
-      $(this).parents('tr').attr('contenteditable', 'true')
-        .attr('data-state', 'edit')
-        .css('color', 'red')
-        .css('font-weight', '700');
-    } else {
-      console.log('set to set');
-      $(this).parents('tr').attr('contenteditable', 'false')
-        .attr('data-state', 'set')
-        .css('color', 'black')
-        .css('font-weight', '400');
-    }
-  });
+  if ($(row).attr('data-state') == 'set') {
+    //console.log('set to edit');
+    $(this).parents('tr').attr('contenteditable', 'true')
+      .attr('data-state', 'edit')
+      .css('color', 'red')
+      .css('font-weight', '700');
+  } else {
+    //console.log('set to set');
+    $(this).parents('tr').attr('contenteditable', 'false')
+      .attr('data-state', 'set')
+      .css('color', 'black')
+      .css('font-weight', '400');
+
+    //actually update firebase (as opposed to just HTML element)
+
+  }
+});
 
 //ADD FUNCTIONALITY
 $("#add").on("click", function (event) {
@@ -105,10 +121,6 @@ $("#add").on("click", function (event) {
 
 });
 
-// Firebase watcher + initial loader + order/limit HINT: .on("child_added"
-
-//from 02-recent-user-with-push
-//database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
 
 function getNextTrain(firstTrainAt, frequency) {
   firstTrainAt = moment(firstTrainAt, "HH:mm");
@@ -122,11 +134,8 @@ function getNextTrain(firstTrainAt, frequency) {
 
   do {
     diff = firstTrainAt.diff(currentTime, "minutes");
-    console.log(diff);
     firstTrainAt.add(frequency, 'minutes');
   } while (diff < 0)
-
-  console.log(diff, " after do/while");
 
   return diff;
 }
@@ -138,7 +147,6 @@ database.ref().on("child_added", function (snapshot) {
 
   let nextTrainIn = getNextTrain(s.firstTrainAt, s.frequency); // moment(sv.start).fromNow();
   //console.log(nextTrainIn, "nextTrainIn");
-
 
   // Change the HTML to reflect
   let html =
@@ -160,4 +168,43 @@ database.ref().on("child_added", function (snapshot) {
   // Handle the errors
 }, function (errorObject) {
   console.log("Errors handled: " + errorObject.code);
+});
+
+//GET CREDENTIALS
+//implementing google/github auth proved too tricky...
+//this just collects info checks against global array of credential objs
+function authenticate(){
+  let authenticated = 'false';
+  let username = $('#username').val().trim().toLowerCase();
+  let password = $('#password').val().trim().toLowerCase();
+
+  credentials.forEach(credential => {
+    if ((credential.username == username) && (credential.password == password)){
+      authenticated = 'true';
+      $('#modal').css('display','none');
+      $('#control-panel').removeClass('disabled');
+    }
+  })
+
+  if (authenticated == 'false'){
+    $('#username').val("invalid credentials").css('color','red');
+    $('#password').val("invalid credentials").css('color','red');
+
+    setTimeout(function(){
+      $('#username').val("").css('color','black');
+      $('#password').val("").css('color','black');
+    },2000)
+  }
+}
+function launchAuth() {
+  $('#modal').css('display','block');
+
+  $('#submit-credentials').on('click', function(){
+    authenticate();
+  })
+
+};
+
+$('#login').on('click', function(){
+  launchAuth();
 });
