@@ -8,97 +8,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css"
-  />
+  <link href="https://fonts.googleapis.com/css?family=Oslwald:400,700|Montserrat:400,900,900i" rel="stylesheet">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
     type="text/css">
   <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/main.css" />
 </head>
 
 <body>
+  <div class="no-opacity">
+    <div id="modal">
+      <div id="modal-content" class="mx-auto modal-content">
+        <h1 class="montserrat-top-header">Bimpton Station Departures</h1>
+        <h3 class="montserrat-header">Control Panel</h3>
+        <input class="form-control-lg" id="username" type="text" placeholder="Username">
+        <input class="form-control-lg" id="password" type="text" placeholder="Password">
+        <button class="btn btn-lg btn-primary" id="submit-credentials">Log In</button>
+        <button class="btn btn-lg btn-danger" id="cancel-credentials">Cancel</button>
 
-  <div id="modal">
-    <div id="modal-content" class="mx-auto modal-content">
-        <div class="form-group">
-          <label for="nameInput">User Name</label>
-          <input class="form-control" id="username" type="text">
-        </div>
-        <div class="form-group">
-          <label for="destinationInput">Password</label>
-          <input class="form-control" id="password" type="text">
-        </div>
-        <button class="btn btn-primary" id="submit-credentials">Log In</button>
+      </div>
     </div>
+
+
+    <header>
+      <section class="mx-auto page-header">
+        <h1 class="montserrat-top-header">Bimpton Station Departures</h1>
+      </section>
+    </header>
+
+    <section class="mx-auto">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="montserrat-header">Scheduled Departures</h3>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="lato">Name</th>
+            <th scope="col" class="lato">Destination</th>
+            <th scope="col" class="lato">First train at... (24 hr)</th>
+            <th scope="col" class="lato">Runs every... (mins)</th>
+            <th scope="col" class="lato">Next train in... (mins)</th>
+            <th scope="col" class="lato">Edit</th>
+            <th scope="col" class="lato">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="appendLinesTo">
+        </tbody>
+      </table>
+    </section>
+
+    <section id="control-panel-login" class="mx-auto">
+      <button class="btn btn-sm btn-primary" id="login">Unlock Control Panel</button>
+    </section>
+
+    <section id="control-panel" class="disabled mx-auto">
+      <div class="row" id="formRow">
+        <div class="col">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="montserrat-header">Add Line</h3>
+            </div>
+            <div class="panel-body">
+              <form role="form">
+                <div class="form-group">
+                  <label for="nameInput">Name</label>
+                  <input class="form-control" id="nameInput" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="destinationInput">Dest.</label>
+                  <input class="form-control" id="destinationInput" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="firstAtInput">First train (24hr)</label>
+                  <input class="form-control" id="firstAtInput" type="time">
+                </div>
+                <div class="form-group">
+                  <label for="frequencyInput">Runs every...</label>
+                  <input class="form-control" id="frequencyInput" type="number">
+                </div>
+                <button class="btn btn-primary" id="add" type="submit">Add Line</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
-
-
-  <header>
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Bimpton Station Departures</h1>
-        <p class="lead">Log in for data entry privileges.</p>
-      </div>
-    </div>
-  </header>
-
-  <section class="mx-auto">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Scheduled Departures</h3>
-      </div>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Destination</th>
-          <th scope="col">First train at... (24 hr)</th>
-          <th scope="col">Runs every... (mins)</th>
-          <th scope="col">Next train in...</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
-        </tr>
-      </thead>
-      <tbody id="appendLinesTo">
-      </tbody>
-    </table>
-  </section>
-
-  <section class="mx-auto">
-    <button class="btn btn-primary" id="login">Log In</button>
-  </section>
-
-  <section id="control-panel" class="disabled mx-auto">
-    <div class="row" id="formRow">
-      <div class="col">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Add Line</h3>
-          </div>
-          <div class="panel-body">
-            <form role="form">
-              <div class="form-group">
-                <label for="nameInput">Name</label>
-                <input class="form-control" id="nameInput" type="text">
-              </div>
-              <div class="form-group">
-                <label for="destinationInput">Destination</label>
-                <input class="form-control" id="destinationInput" type="text">
-              </div>
-              <div class="form-group">
-                <label for="firstAtInput">First train at... (24hr)</label>
-                <input class="form-control" id="firstAtInput" type="time">
-              </div>
-              <div class="form-group">
-                <label for="frequencyInput">Runs every... (mins)</label>
-                <input class="form-control" id="frequencyInput" type="number">
-              </div>
-              <button class="btn btn-primary" id="add" type="submit">Add Line</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>

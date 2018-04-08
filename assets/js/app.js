@@ -2,12 +2,12 @@
 //this just collects info checks against global array of credential objs
 var credentials = [
   {
-    username:"tommy",
-    password:"tommy"
+    username: "tommy",
+    password: "tommy"
   },
   {
-    username:"chris",
-    password:"chris"
+    username: "chris",
+    password: "chris"
   }
 ];
 
@@ -151,11 +151,11 @@ database.ref().on("child_added", function (snapshot) {
   // Change the HTML to reflect
   let html =
     `
-  <td class='editable'>${s.name}</td>
-  <td class='editable'>${s.destination}</td>
-  <td class='editable'>${s.firstTrainAt}</td>
-  <td class='editable'>${s.frequency}</td>
-  <td>${nextTrainIn} minutes</td>
+  <td class='lato'>${s.name}</td>
+  <td class='lato'>${s.destination}</td>
+  <td class='lato'>${s.firstTrainAt}</td>
+  <td class='lato'>${s.frequency} minutes</td>
+  <td class='lato'>${nextTrainIn} minutes</td>
   <td><i class="fa fa-edit"></td>
   <td><i class="fa fa-minus-circle"></td>
   `
@@ -173,38 +173,43 @@ database.ref().on("child_added", function (snapshot) {
 //GET CREDENTIALS
 //implementing google/github auth proved too tricky...
 //this just collects info checks against global array of credential objs
-function authenticate(){
+function authenticate() {
   let authenticated = 'false';
   let username = $('#username').val().trim().toLowerCase();
   let password = $('#password').val().trim().toLowerCase();
 
   credentials.forEach(credential => {
-    if ((credential.username == username) && (credential.password == password)){
+    if ((credential.username == username) && (credential.password == password)) {
       authenticated = 'true';
-      $('#modal').css('display','none');
+      $('#modal').css('display', 'none');
       $('#control-panel').removeClass('disabled');
     }
   })
 
-  if (authenticated == 'false'){
-    $('#username').val("invalid credentials").css('color','red');
-    $('#password').val("invalid credentials").css('color','red');
+  if (authenticated == 'false') {
+    $('#username').val("invalid credentials").css('color', 'red');
+    $('#password').val("invalid credentials").css('color', 'red');
 
-    setTimeout(function(){
-      $('#username').val("").css('color','black');
-      $('#password').val("").css('color','black');
-    },2000)
+    setTimeout(function () {
+      $('#username').val("").css('color', 'black');
+      $('#password').val("").css('color', 'black');
+    }, 2000)
   }
 }
 function launchAuth() {
-  $('#modal').css('display','block');
+  $('#modal').css('display', 'block');
 
-  $('#submit-credentials').on('click', function(){
+  $('#submit-credentials').on('click', function () {
     authenticate();
   })
 
+  $("#cancel-credentials").on('click', function () {
+    $('#modal').css('display', 'none');
+  });
+
+
 };
 
-$('#login').on('click', function(){
+$('#login').on('click', function () {
   launchAuth();
 });

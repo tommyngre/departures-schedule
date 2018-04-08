@@ -1,11 +1,77 @@
+/* background image */
+.no-opacity {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+}
+.no-opacity::after {
+  content: "";
+  background: url("../../assets/images/train.jpg");
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+table, .table, .table thead th,.table td, .table th{
+  border-color:black;
+}
+
+thead{
+  background-color:snow;
+}
+
 section {
   width:90%;
-  margin-bottom:20px;
+}
+h1{
+  margin-bottom:0px;
+}
+
+.page-header{
+  background-color:navajo-white;
+}
+
+#control-panel-login{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.montserrat-top-header{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  background-color:navajowhite;
+  padding-left:15px;
+}
+
+.montserrat-header{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  background-color:antiquewhite;
+  padding-left:15px;
+}
+
+.montserrat-tame{
+font-family: 'Montserrat', sans-serif;
+}
+
+th{
+  font-weight: 400;
+}
+
+.lato{
+  font-family: 'Oswald',sans-serif;
+  font-weight:700;
 }
 
 .disabled {
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 #modal{
@@ -19,11 +85,14 @@ section {
 
 #modal-content{
   width:80%;
-  background-color:#e9ecef;
   z-index:10;
 }
 
 .modal-content{
   margin-top:20px;
-  padding:50px;
+  padding:20px 20px;
+}
+
+.form-control-lg{
+  border-radius:0;
 }
