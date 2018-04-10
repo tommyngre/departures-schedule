@@ -1,21 +1,4 @@
-//todos
-///update every min
-///update/remove persistent row data
-
-//implementing google/github auth proved too tricky...
-//this just collects info checks against global array of credential objs
-var credentials = [
-  {
-    username: "tommy",
-    password: "tommy"
-  },
-  {
-    username: "chris",
-    password: "chris"
-  }
-];
-
-// Initialize Firebase
+//Initialize Firebase
 var config = {
   apiKey: "AIzaSyC25-WUlZIYukycskRciNzYbNkz0In1yRo",
   authDomain: "testing-c7ec4.firebaseapp.com",
@@ -27,10 +10,13 @@ var config = {
 
 firebase.initializeApp(config);
 
-// Create a variable to reference the database.
+//reference to database
 var database = firebase.database();
 
-// initial Values
+//note if credentials entered to unlock control panel
+let controlPanelUnlocked = 'nope';
+
+//init Val
 var name = "";
 var destination = "";
 var firstTrainAt = "";
@@ -74,7 +60,12 @@ $("#appendLinesTo").on('click', '.fa-minus-circle', function () {
   let row = $(this).parents('tr');
   let confirmDelete = confirm("Delete this line?");
   if (confirmDelete == true) {
+    //get key
+    let key = $(this).parents('tr').attr('data-key');
+    //remove from page
     $(this).parents('tr').remove();
+    //remove from db
+    database.ref().child(key).remove();
   }
 });
 
@@ -96,7 +87,7 @@ $("#appendLinesTo").on('click', '.fa-edit', function () {
       .css('font-weight', '400');
 
     //actually update firebase (as opposed to just HTML element)
-
+    ///future
   }
 });
 
@@ -113,14 +104,12 @@ $("#add").on("click", function (event) {
   let valid = validateInputs(name, destination, firstTrainAt, frequency);
 
   if (valid) {
-
     database.ref().push({
       name: name,
       destination: destination,
       firstTrainAt: firstTrainAt,
       frequency: frequency
     });
-
   }
 
 });
@@ -128,12 +117,7 @@ $("#add").on("click", function (event) {
 
 function getNextTrain(firstTrainAt, frequency) {
   firstTrainAt = moment(firstTrainAt, "HH:mm");
-
   let currentTime = moment();
-
-  //just so i don't need to enter it while testing
-  frequency = 15;
-
   let diff = firstTrainAt.diff(currentTime, "minutes");
 
   do {
@@ -147,7 +131,10 @@ function getNextTrain(firstTrainAt, frequency) {
 database.ref().on("child_added", function (snapshot) {
 
   // store snapshot
-  var s = snapshot.val();
+  let s = snapshot.val();
+  let k = snapshot.key;
+  console.log(k);
+
 
   let nextTrainIn = getNextTrain(s.firstTrainAt, s.frequency); // moment(sv.start).fromNow();
   //console.log(nextTrainIn, "nextTrainIn");
@@ -165,7 +152,8 @@ database.ref().on("child_added", function (snapshot) {
   `
 
   let newLine = $("<tr>").html(html)
-    .attr('data-state', 'set');
+    .attr('data-state', 'set')
+    .attr('data-key', k);
   $("#appendLinesTo").append(newLine);
 
 
@@ -181,8 +169,12 @@ database.ref().on("child_added", function (snapshot) {
   let newLineSm = $("<tr>").html(htmlSm)
   $("#appendLinesTo-sm").append(newLineSm);
 
+  if (controlPanelUnlocked == 'yep') {
+    $('.fa-edit').removeClass('disabled');
+    $('.fa-minus-circle').removeClass('disabled');
+  }
 
-  // Handle the errors
+  //handle errors
 }, function (errorObject) {
   console.log("Errors handled: " + errorObject.code);
 });
@@ -190,6 +182,17 @@ database.ref().on("child_added", function (snapshot) {
 //GET CREDENTIALS
 //implementing google/github auth proved too tricky...
 //this just collects info checks against global array of credential objs
+var credentials = [
+  {
+    username: "tommy",
+    password: "tommy"
+  },
+  {
+    username: "chris",
+    password: "chris"
+  }
+];
+
 function authenticate() {
   let authenticated = 'false';
   let username = $('#username').val().trim().toLowerCase();
@@ -198,6 +201,7 @@ function authenticate() {
   credentials.forEach(credential => {
     if ((credential.username == username) && (credential.password == password)) {
       authenticated = 'true';
+      controlPanelUnlocked = 'yep';
       $('#modal').css('display', 'none');
       $('#control-panel').removeClass('disabled');
       $('.fa-edit').removeClass('disabled');
@@ -215,6 +219,7 @@ function authenticate() {
     }, 2000)
   }
 }
+
 function launchAuth() {
   $('#modal').css('display', 'block');
 
@@ -229,8 +234,14 @@ function launchAuth() {
     $('#modal').css('display', 'none');
   });
 
-
 };
+
+//UPDATES WINDOW EVERY MINUTE...
+///better to update firebase only, so use workflows not interrupted
+// setInterval(function() {
+//   window.location.reload();
+// }, 60000); 
+// })
 
 $('#login').on('click', function () {
   launchAuth();
