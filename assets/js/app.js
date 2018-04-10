@@ -133,7 +133,7 @@ database.ref().on("child_added", function (snapshot) {
   // store snapshot
   let s = snapshot.val();
   let k = snapshot.key;
-  console.log(k);
+  //console.log(k);
 
 
   let nextTrainIn = getNextTrain(s.firstTrainAt, s.frequency); // moment(sv.start).fromNow();
