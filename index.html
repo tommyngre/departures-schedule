@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i|IBM+Plex+Sans+Condensed:400,400i|IBM+Plex+Sans:700i"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Oslwald:400,700|Montserrat:400,900,900i" rel="stylesheet">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
     type="text/css">
@@ -30,7 +32,7 @@
 
 
     <header>
-      <section class="mx-auto page-header">
+      <section class="mx-auto">
         <h1 class="montserrat-top-header">Bimpton Station</h1>
       </section>
     </header>
@@ -39,36 +41,37 @@
       <h3 class="montserrat-header">Departures</h3>
 
       <div class="mx-auto">
-      <table class="table-lg table border-mod">
-        <thead>
-          <tr>
-            <th scope="col" class="lato">Name</th>
-            <th scope="col" class="lato">Destination</th>
-            <th scope="col" class="lato">First Stop (24hr)</th>
-            <th scope="col" class="lato">Stops Every</th>
-            <th scope="col" class="lato">Next Stop</th>
-            <th scope="col" class="lato">Edit</th>
-            <th scope="col" class="lato">Delete</th>
-          </tr>
-        </thead>
-        <tbody id="appendLinesTo">
-        </tbody>
-      </table>
-    </div>
-    <div class="mx-auto">
-      <table class="table-sm table border-mod">
-        <thead>
-          <tr>
-            <th scope="col" class="lato">Name</th>
-            <th scope="col" class="lato">Destination</th>
-            <th scope="col" class="lato">First Stop (24hr)</th>
-            <th scope="col" class="lato">Next Stop</th>
-          </tr>
-        </thead>
-        <tbody id="appendLinesTo-sm">
-        </tbody>
-      </table>
-    </div>
+        <table class="table-lg table border-mod">
+          <thead>
+            <tr>
+              <th scope="col" class="lato">Name</th>
+              <th scope="col" class="lato">Destination</th>
+              <th scope="col" class="lato">First Stop (24hr)</th>
+              <th scope="col" class="lato">Stops Every</th>
+              <th scope="col" class="lato">Next Stop</th>
+              <th scope="col" class="lato">Edit</th>
+              <th scope="col" class="lato">Delete</th>
+            </tr>
+          </thead>
+          <tbody id="appendLinesTo">
+          </tbody>
+        </table>
+      </div>
+      <div class="mx-auto">
+        <table class="table-sm table border-mod">
+          <thead>
+            <tr>
+              <th scope="col" class="lato">Name</th>
+              <th scope="col" class="lato">Destination</th>
+              <th scope="col" class="lato">First Stop (24hr)</th>
+              <th scope="col" class="lato">Stops Every</th>
+              <th scope="col" class="lato">Next Stop</th>
+            </tr>
+          </thead>
+          <tbody id="appendLinesTo-sm">
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section id="control-panel-login" class="mx-auto">

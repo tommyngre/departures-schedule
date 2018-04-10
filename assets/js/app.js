@@ -1,8 +1,6 @@
 //todos
 ///update every min
-///modal: move cursor to username
 ///update/remove persistent row data
-///center or make table width 100% when small
 
 //implementing google/github auth proved too tricky...
 //this just collects info checks against global array of credential objs
@@ -162,8 +160,8 @@ database.ref().on("child_added", function (snapshot) {
   <td class='lato'>${s.firstTrainAt}</td>
   <td class='lato'>${s.frequency} mins</td>
   <td class='lato'>${nextTrainIn} mins</td>
-  <td><i class="fa fa-edit"></td>
-  <td><i class="fa fa-minus-circle"></td>
+  <td><i class="fa fa-edit disabled"></td>
+  <td><i class="fa fa-minus-circle disabled"></td>
   `
 
   let newLine = $("<tr>").html(html)
@@ -176,6 +174,7 @@ database.ref().on("child_added", function (snapshot) {
   <td scope='row' class='lato'>${s.name}</td>
   <td class='lato'>${s.destination}</td>
   <td class='lato'>${s.firstTrainAt}</td>
+  <td class='lato'>${s.frequency} mins</td>
   <td class='lato'>${nextTrainIn} min</td>
   `
 
@@ -201,6 +200,8 @@ function authenticate() {
       authenticated = 'true';
       $('#modal').css('display', 'none');
       $('#control-panel').removeClass('disabled');
+      $('.fa-edit').removeClass('disabled');
+      $('.fa-minus-circle').removeClass('disabled');
     }
   })
 
@@ -216,6 +217,9 @@ function authenticate() {
 }
 function launchAuth() {
   $('#modal').css('display', 'block');
+
+  //move focus to uname
+  $("#username").focus();
 
   $('#submit-credentials').on('click', function () {
     authenticate();

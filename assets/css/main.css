@@ -17,7 +17,18 @@
   z-index: -1;   
 }
 
+h1{
+  margin-bottom:0px;
+}
 
+section {
+  width:90%;
+}
+
+table{
+  width:100%;
+  margin:0 auto;
+}
 .table thead th, .border-mod td, .border-mod th, .table td, .table th {
   border-color:black;
 }
@@ -34,49 +45,33 @@ tr{
   border-bottom:1px solid black;
 }
 
-section {
-  width:90%;
-}
-
-h1{
-  margin-bottom:0px;
-}
-
-.page-header{
-  background-color:navajo-white;
-}
-
 #control-panel-login{
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .montserrat-top-header{
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
+  font-family:'IBM Plex Sans', sans-serif;
+  font-style:normal;
   background-color:navajowhite;
   padding-left:15px;
 }
 
 .montserrat-header{
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-weight:700;
   font-style: italic;
   background-color:antiquewhite;
   padding-left:15px;
 }
 
-.montserrat-tame{
-font-family: 'Montserrat', sans-serif;
+.lato{
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-weight:700;
 }
 
 label{
   margin-bottom:0;
-}
-
-.lato{
-  font-family: 'Oswald',sans-serif;
-  font-weight:700;
 }
 
 .disabled {
@@ -105,14 +100,10 @@ label{
   border-radius:0;
 }
 
-
 @media screen and (max-width: 600px) {
-  .table-sm{
-    display:block;
-  }
-  .table-lg{
-    display:none;
-  }
+  .lato{
+font-size:.8em;  
+}
   section {
     width:95%;
   }
